@@ -25,9 +25,9 @@ Whether you're a fellow learner or just curious, feel free to explore and use th
     These notes are more informal and can provide personal perspectives and life lessons.
 
 ## RECOMMEND 
-### - We recommend using the Evernote version of each note in this repository to ensure the preservation of the full style and formatting of the content.
-### - Evernote also provides robust formatting options that help maintain the original look and feel of the notes.
+- We recommend using the Evernote version of each note in this repository to ensure the preservation of the full style and formatting of the content.
+- Evernote also provides robust formatting options that help maintain the original look and feel of the notes.
 
 
-## Feel free to explore the notes in this repository, and I hope you find them valuable. 
-## If you have any questions, suggestions, or feedback, please don't hesitate to reach out. Happy learning and exploring! 📚🧠🌟
+#### Feel free to explore the notes in this repository, and I hope you find them valuable. 
+#### If you have any questions, suggestions, or feedback, please don't hesitate to reach out. Happy learning and exploring! 📚🧠🌟
