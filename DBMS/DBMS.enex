@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE en-export SYSTEM "http://xml.evernote.com/pub/evernote-export4.dtd">
+<en-export export-date="20231110T132818Z" application="Evernote" version="10.58.8">
+  <note>
+    <title>DBMS</title>
+    <created>20230825T111526Z</created>
+    <updated>20230825T121755Z</updated>
+    <note-attributes>
+      <author>Ahmed Salem</author>
+    </note-attributes>
+    <content>
+      <![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd"><en-note><div><br/></div><div style="padding-left:40px;">Reading 64 bit in RAM require 100 ns but in SSD require 150,000 ns but in HDD require 10,000,000 ns</div><div style="padding-left:40px;"><br/></div><h2>    Storage manager</h2><div style="padding-left:80px;">Responsible for maintaining database files</div><ul><ul><ul><li><div>organize the files as collections of pages</div></li><li><div>track read and write to these pages and available storage space.</div></li></ul></ul></ul><div><br/></div><h3>    <span style="font-size: 20px;">Page</span></h3><ul><ul><li><div>Fixed size block of data</div></li><li><div>512B - 16KB</div></li><li><div>SQL Server, Postgres => 8KB, MySQL => 16KB</div></li><li><div>It contains tuples, meta-data, indexes, log records and more.</div></li><li><div>Some systems require the page to be self-contained (all information about the page is inside the page.)</div></li><li><div>Each page is given a unique identifier, the storage manager use this ID to find the page.</div></li><li><div>Different databases manage pages in files on disks in different ways (Heap file, tree file, hashing file)</div></li></ul></ul><div><br/></div><ul><ul><li><h3><span style="font-size: 16px;">Heap File</span></h3></li><ul><li><div><span style="font-size: 16px;">Unordered collection of pages where tuples stored in random pages</span></div></li><li><div><span style="font-size: 16px;">Need meta-data to know which page have free space and more.</span></div></li><li><div><span style="font-size: 16px;">Two ways to implement => page directory. linked list</span></div></li></ul></ul></ul><div><span style="font-size: 16px;"><span style="--en-markholder:true;"><br/></span></span></div><ul><ul><ul><li><div><span style="font-size: 16px;">Page directory (good one)</span></div></li><ul><li><div><span style="font-size: 16px;">The DBMS maintains special pages that track the location of each page and a meta-data about each one (ex. number of free slots in each one)</span></div></li><li><div><span style="font-size: 16px;">The DBMS make sure that the directory pages are in sync with data pages.</span></div></li></ul></ul></ul></ul><div><span style="font-size: 16px;"><span style="--en-markholder:true;"><br/></span></span></div><ul><ul><ul><li><div><span style="font-size: 16px;">Linked list</span></div></li><ul><li><div><br/></div></li></ul></ul></ul></ul></en-note>      ]]>
+    </content>
+  </note>
+</en-export>
