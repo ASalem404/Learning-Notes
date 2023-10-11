@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE en-export SYSTEM "http://xml.evernote.com/pub/evernote-export4.dtd">
+<en-export export-date="20231111T214926Z" application="Evernote" version="10.58.8">
+  <note>
+    <title>REDIS</title>
+    <created>20231010T131451Z</created>
+    <updated>20231010T231503Z</updated>
+    <note-attributes>
+      <author>Ahmed Salem</author>
+    </note-attributes>
+    <content>
+      <![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd"><en-note><h1><br/></h1><div><b>Note: </b></div><div>it still looks like there's a lot of commands to remember but any commands  are kind of duplicate functionality.</div><hr/><h2><b>String</b> </h2><ul><li><div><span style="font-size: 20px;">Setters</span></div></li><ul><ul><li><div><span style="font-size: 18px;"><u>SET</u></span></div></li><ul><li><div>It Used to set a string value to a key.</div><div>ex: SET message ' HI '</div><div><br/></div></li><li><div>GET</div><div>GET is an optional to the SET command => Get then update</div><div>ex: SET message 'Hello' GET => returns the value of message then update it to ' Hello '</div><div>if no previous value for the key message then it will return ' nil '</div><div><br/></div></li><li><div>XX</div><div>XX is an optional to the SET command => update if exist</div><div>ex: SET message ' HEY ' XX => if message is already exist, then it will update it</div><div>else it will return ' nil '</div><div><br/></div></li><li><div>NX</div><div>NX is an optional to the SET command => set if not exist</div><div>ex: SET message ' HEY ' XX => if message is not already exist, then it will set it</div><div>else it will return ' nil '</div></li></ul></ul></ul></ul><div style="padding-left:160px;"><br/></div><ul><ul><ul><ul><li><div>EX </div><div>EX is an optional to the SET command => set for only a couple of seconds</div><div>ex: SET message ' HEY ' EX 5 => after 5 seconds delete this message key</div></li></ul></ul></ul></ul><div><br/></div><ul><ul><ul><li><div>There are more SET commands but not common used.</div></li></ul></ul></ul><div style="padding-left:160px;"><br/></div></en-note>      ]]>
+    </content>
+  </note>
+</en-export>
