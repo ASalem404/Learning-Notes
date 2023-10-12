@@ -37,13 +37,15 @@ It still looks like there are a lot of commands to remember, but many of these c
 
     - There are more SET commands but not commonly used.
 
-  - Getters - GET
-    ex: GET name => Ahmed
+  - Getters
 
-        - GETRANGE
-          Used for getting a portion of a string value.
-          ex: GET data 0 2
-          if data was 'ASA22' => it will return 'ASA'
+    - GET
+      ex: GET name => Ahmed
+
+    - GETRANGE
+      Used for getting a portion of a string value.
+      ex: GET data 0 2
+      if data was 'ASA22' => it will return 'ASA'
 
 ---
 
