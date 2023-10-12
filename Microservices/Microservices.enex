@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE en-export SYSTEM "http://xml.evernote.com/pub/evernote-export4.dtd">
+<en-export export-date="20231112T002649Z" application="Evernote" version="10.58.8">
+  <note>
+    <title>Microservices</title>
+    <created>20231012T001022Z</created>
+    <updated>20231012T002308Z</updated>
+    <note-attributes>
+      <author>Ahmed Salem</author>
+    </note-attributes>
+    <content>
+      <![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd"><en-note><div><br/></div><ul><li><div>Kubernates</div></li><ul><li><div>Kubernates cluster: is a collection of nodes and master to manage them</div></li><li><div>node : is a machine will run our containers</div></li><li><div>pod  : more or less than a running container</div></li><li><div>deployment : monitors a set of pods and sure that they all running and if one fails restart it</div></li><li><div>service : provides an easy to remember URL for access containers</div><div><br/></div></li><li><div>we manage kubernates using config file, its a YAML file use to write config for objects</div><div>also u can directly config kubernates without using config file but its a bad practice don't do that.</div><div><br/></div></li><li><div>Network with services: </div></li><ul><li><div> Cluster IP ==> setup communication between pods in the cluster</div></li><li><div> NodePort   ==> make a pod accessible from outside  the cluster, used only in dev purpose.</div></li><li><div> Load Balancer ==> make a pod accessible from outside  the cluster.</div><div><br/></div><div><br/></div></li></ul><li><div>"Why don't we use cookies to handle session expiration?</div></li><ul><li><div>Cookies are managed by the browser, and they do expire after a certain period of time. However, it's relatively easy for a user to copy the cookie and ignore the expiration date, allowing them to continue using the cookie to access responses. This is why we use JSON Web Tokens (JWTs) instead, as they encrypt the expiration date in some way, making it more secure."</div><div><br/></div></li></ul><li><div>How to create secret for JWT in K8S ?? </div></li><ul><li><div>kubectl create secret generic jwt-secret --from-literal=jwt=asdf</div></li></ul></ul></ul><div><br/></div><div><br/></div></en-note>      ]]>
+    </content>
+  </note>
+</en-export>
