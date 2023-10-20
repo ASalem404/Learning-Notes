@@ -37,15 +37,13 @@ It still looks like there are a lot of commands to remember, but many of these c
 
     - There are more SET commands but not commonly used.
 
-  - Getters
+  - Getters - GET
+    ex: GET name => Ahmed
 
-    - GET
-      ex: GET name => Ahmed
-
-    - GETRANGE
-      Used for getting a portion of a string value.
-      ex: GET data 0 2
-      if data was 'ASA22' => it will return 'ASA'
+        - GETRANGE
+          Used for getting a portion of a string value.
+          ex: GET data 0 2
+          if data was 'ASA22' => it will return 'ASA'
 
 ---
 
@@ -72,3 +70,62 @@ It still looks like there are a lot of commands to remember, but many of these c
     This would compromise the efficiency of using an in-memory database, which is all about speed.
     Also, updating values on the server side may lead to dealing with inconsistent values. This can occur when two requests for obtaining the same value happen simultaneously.
     In this case, both requests will read the same value. For instance, if both requests increase it by 1 and write it back, the data will have been increased by one when it should have been increased by two.
+
+---
+
+- HASH
+
+  - HSET
+
+    - Used for adding multiple Key value pairs to a single key or decrementing a value.
+      ex: HSET person name 'Ahmed' age 22
+
+  - HGET
+
+    - Used for retrieving a Hash Key value by the field name.
+      ex: HGET person age
+
+  - HGETALL
+
+    - Used for retrieving ALL the Hash Key value pairs.
+      ex: HGETALL person
+
+  - HEXISTS
+
+    - Used for checking for the existence of a field in the hash.
+      ex: HEXISTS person age
+      return 0 or 1
+
+  - HDEL
+
+    - Used for deleting fa field from the hash.
+      ex: HDEL person age
+
+  - DEL
+
+    - Delete the entire hash.
+      ex: DEL person
+
+  - HINCRBY
+
+    - Adding an integer number value to a hash field.
+      ex: HINCRBY person age 10
+
+  - HINCRBYFLOAT
+
+    - Adding float number value to a hash field.
+      ex: HINCRBYFLOAT person age 10.5
+
+  - HSTRLEN
+
+    - Return the string length of a hash field.
+      ex: HSTRLEN person name
+
+  - HKEYS
+
+    - Return the hash keys.
+      ex: HKEYS person
+
+  - HVALS
+    - Return the hash values.
+      ex: HVALS person
