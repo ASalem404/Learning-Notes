@@ -36,13 +36,9 @@
     PostgreSQL is typically less performant than other RDBMSs, like MySQL.
   - Popularity: there are still fewer third-party tools that can help manage a PostgreSQL database.
 
-- DDL:
-  - Any action manipulate the database structure (create database, tabel,...)
-- DML:
-  - Any action manipulate the database tables contents
-- DCL:
-
-  - Any action control the database like users permissions
+- DDL: Any action manipulate the database structure (create database, tabel,...)
+- DML: Any action manipulate the database tables contents
+- DCL: Any action control the database like users permissions
 
 - Charactersets Vs collations
 
@@ -74,15 +70,33 @@
     because null is not a value, it's a property of the data, it's different from 0 or ' '.
     instead you must use 'IS NULL' or 'IS NOT NULL'.
 
+  - Built-in functions
+
+    - some of these functions (May be differ from database to another)
+
+    - ABS() => returns the absolute value.
+    - ASCII() => returns the ASCII representation of the value.
+    - CHAR() => returns the character representation of the ASCII value.
+    - ADDDATE() => add days to the date
+    - DAY() => extract days from the date
+    - DAYNAME() => returns the day name
+    - MONTH() => extract months from the date
+    - MONTHNAME() => returns the month name
+    - CURDATE() => returns the current date,
+    - CONCAT() => concatenate some of strings together
+    - LENTH() => returns the length of the string
+    - LOWER() => returns the lowercase version of the string
+    - TRIM() => remove the extra spaces or specific character from the end and start of the string
+    - ISNULL() => returns true if the value is null- undefined is null, empty string is not null
+    - IF(comparason, if True do, if False do)
+
   - Aggregation:
 
     - aggregators only aggregate vertically - the values of a column.
       If you want to perform a calculation across rows, you would do this with simple arithmetic.
 
-    - COUNT
-      COUNT does not consider rows that have NULL value.
-    - SUM
-      you can only use SUM on numeric columns. However, SUM will ignore NULL values.
+    - COUNT : COUNT does not consider rows that have NULL value.
+    - SUM : you can only use SUM on numeric columns. However, SUM will ignore NULL values.
     - MIN - MAX
       Functionally, MIN and MAX are similar to COUNT in that they can be used on non-numerical columns.
       Depending on the column type, MIN will return the lowest number, earliest date, or non-numerical value as early in the alphabet as possible.
