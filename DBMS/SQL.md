@@ -70,6 +70,10 @@
     because null is not a value, it's a property of the data, it's different from 0 or ' '.
     instead you must use 'IS NULL' or 'IS NOT NULL'.
 
+  - Some SQL statements
+
+    - UNION => Merge results of two queries together.
+
   - Built-in functions
 
     - some of these functions (May be differ from database to another)
@@ -142,3 +146,41 @@
       - You can make any conditional statement using any conditional operator (like WHERE) between WHEN and THEN.
         This includes stringing together multiple conditional statements using AND and OR.
       - You can include multiple WHEN statements, as well as an ELSE statement again, to deal with any unaddressed conditions.
+
+  - ## JOIN:
+
+    - ![Alt text](1694185702315.png)
+    - SQL joins are used to combine data from two or more tables in a relational database based on a related column between them.
+      Joins are fundamental to querying and retrieving information from databases efficiently.
+      There are several types of SQL joins, including:
+
+    - INNER JOIN:The INNER JOIN returns only the rows that have matching values in both
+      tables.Syntax:SELECT column1, column2, ... FROM table1 INNER JOIN table2 ON table1.column_name = table2.column_name;
+
+    - LEFT (OUTER) JOIN:The LEFT JOIN returns all the rows from the left table and the matched rows from the right table.
+      If there is no match, NULL values are returned for columns from the right
+      table.Syntax:SELECT column1, column2, ... FROM table1 LEFT JOIN table2 ON table1.column_name = table2.column_name;
+
+    - RIGHT (OUTER) JOIN:The RIGHT JOIN returns all the rows from the right table and the matched rows from the left table.
+      If there is no match, NULL values are returned for columns from the left
+      table.Syntax:SELECT column1, column2, ... FROM table1 RIGHT JOIN table2 ON table1.column_name = table2.column_name;
+
+    - FULL (OUTER) JOIN:The FULL JOIN returns all rows when there is a match in either the left or right table.
+      If there is no match, NULL values are returned for columns from the non-matching
+      table.Syntax:SELECT column1, column2, ... FROM table1 FULL JOIN table2 ON table1.column_name = table2.column_name;
+
+    - CROSS JOIN:The CROSS JOIN returns the Cartesian product of two tables,
+      meaning it combines every row from the first table with every row from the second table, resulting in a potentially large result
+      set.Syntax:SELECT column1, column2, ... FROM table1 CROSS JOIN table2;
+
+    - SELF JOIN:A self join is a join where a table is joined with itself.
+      This can be useful when you have hierarchical data or need to compare rows within the same
+      table.Syntax:SELECT column1, column2, ... FROM table1 AS t1 INNER JOIN table1 AS t2 ON t1.column_name = t2.column_name;
+
+    - When using SQL joins, it's important to specify the columns that are used for joining
+      and to understand the relationships between the tables in your database schema.
+      Joining tables efficiently can significantly impact the performance of your SQL queries,
+      so it's important to use the appropriate join type for your specific use case.
+
+    - You can replace ON keyword in join by USING keyword in case of the both tables have the same name in the used join column
+      ex: ON table1.ID = table2.ID => USING(ID)
