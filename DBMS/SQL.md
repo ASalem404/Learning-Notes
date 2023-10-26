@@ -48,7 +48,7 @@
       => a in germany has different behaviors
   - charactersets and collations can be determined at the beginning of the table creation or at the end of each query using keyword COLLATE.
 
-- SQL Tips:
+- # SQL Tips:
 
   - derived Column : a new column that is a manipulation of exiting columns in your database
   - when creating database its important to know how data will be stored in.
@@ -94,7 +94,7 @@
     - ISNULL() => returns true if the value is null- undefined is null, empty string is not null
     - IF(comparason, if True do, if False do)
 
-  - Aggregation:
+  - ## Aggregation:
 
     - aggregators only aggregate vertically - the values of a column.
       If you want to perform a calculation across rows, you would do this with simple arithmetic.
@@ -184,3 +184,23 @@
 
     - You can replace ON keyword in join by USING keyword in case of the both tables have the same name in the used join column
       ex: ON table1.ID = table2.ID => USING(ID)
+
+  - ## VIEWS
+
+    - A view in SQL is a saved query that acts as a virtual table.
+      It does not store any data on its own but instead retrieves data from one or more underlying tables whenever it is queried.
+      Views are defined by SQL statements that select specific columns and rows from one or more tables, and this result set is then treated as a new table.
+
+    - View benifits:
+      - Simplified Data Access: Views allow you to simplify complex queries by encapsulating them into a single,
+        easy-to-understand virtual table. This can greatly improve code readability and maintainability.
+      - Data Security: Views can restrict access to sensitive data.
+        You can grant users access to a view without giving them direct access to the underlying tables, controlling what data they can see.
+      - Abstraction: Views provide a layer of abstraction over the database schema.
+        If the underlying tables change, you can modify the view to adapt without affecting the applications that use it.
+      - Performance Optimization: In some cases, views can be used to precompute and store intermediate results,
+        which can improve query performance by avoiding redundant calculations.
+
+  - DELETE VS TRUNCATE
+    - The key point to note here is that if you use 'DELETE' to remove all the rows from the table, and you have an auto-increment column, and the last value was 5.
+      After the deletion, if you add a new row to the table, the auto-increment column will start from 6. However, if you use 'TRUNCATE,' it will reset to the beginning and start from 0.
