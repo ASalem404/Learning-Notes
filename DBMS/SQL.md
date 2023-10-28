@@ -48,6 +48,41 @@
       => a in germany has different behaviors
   - charactersets and collations can be determined at the beginning of the table creation or at the end of each query using keyword COLLATE.
 
+- ## Indexes
+
+  - indexes are a powerful tool used in the background of a database to speed up querying.
+    Indexes power queries by providing a method to quickly lookup the requested data.
+
+    Simply put, an index is a pointer to data in a table. An index in a database is very similar to an index in the back of a book.
+
+  - Syntax
+
+    ```
+    CREATE INDEX <index_name>
+    ON <table_name> (column1, column2, ...)
+    ```
+
+  - Types
+
+    - Clustered Index:
+
+      - A clustered index determines the physical order of the data rows in a table.
+        In other words, the data rows in a table are stored on disk in the same order as the clustered index.
+      - There can be only one clustered index per table because the actual order of data rows can't be sorted in multiple ways at the same time.
+      - It's important to note that not all databases support clustered indexes. They are commonly used in databases like Microsoft SQL Server.
+      - The primary key of a table is often used as the clustered index because it enforces a unique constraint and helps to efficiently retrieve rows by that key.
+
+    - Non-Clustered Index:
+
+      - A non-clustered index is a separate data structure that contains a copy of the indexed columns and a reference to the actual data row in the table.
+        It doesn't determine the physical order of the data rows.
+      - Multiple non-clustered indexes can be created on a single table.
+        Each index is like a separate lookup structure, helping to optimize queries that search for data based on the indexed columns.
+      - Non-clustered indexes are used to speed up data retrieval for specific queries, such as searching, filtering, and sorting operations.
+
+      - While non-clustered indexes improve query performance, they require additional storage space and maintenance
+        because they store a copy of the indexed data and must be updated when data is modified.
+
 - # SQL Tips:
 
   - derived Column : a new column that is a manipulation of exiting columns in your database
@@ -202,5 +237,26 @@
         which can improve query performance by avoiding redundant calculations.
 
   - DELETE VS TRUNCATE
+
     - The key point to note here is that if you use 'DELETE' to remove all the rows from the table, and you have an auto-increment column, and the last value was 5.
       After the deletion, if you add a new row to the table, the auto-increment column will start from 6. However, if you use 'TRUNCATE,' it will reset to the beginning and start from 0.
+
+  - Foreign key:
+
+    - A foreign key is a column (or combination of columns) in a table whose values must match values of a column in some other table.
+      FOREIGN KEY constraints enforce referential integrity, which essentially says that if column value A refers to column value B, then column value B must exist.
+      For example, if the "department" column is a foreign key constraint in the "employees" table and a primary key in the "management" table, then you cannot insert a user into the "employees" table and assign a department that doesn't exist in the "management" table.
+
+  - ## Sub Queries:
+
+    - Whenever we need to use existing tables to create a new table that we then want to query again,
+      this is an indication that we will need to use some sort of subquery.
+    - if you use SELECT to created a table that you could then query again in the FROM statement, you must alias it.
+      However, if you are only returning a single value, you might use that value in a logical statement like WHERE, HAVING, or even SELECT - the value could be nested within a CASE statement you should not include an alias.
+
+    - WITH - Comma Table Expressions (CTE)
+      - The WITH statement is often called a Common Table Expression or CTE.
+        Though these expressions serve the exact same purpose as subqueries,
+        they are more common in practice, as they tend to be cleaner for a future reader to follow the logic.
+      - When creating multiple tables using, you add a comma after every table except the last table leading to your final query.
+      - The new table name is always aliased using 'table_name AS', which is followed by your query nested between parentheses.
