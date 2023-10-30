@@ -48,6 +48,24 @@
       => a in germany has different behaviors
   - charactersets and collations can be determined at the beginning of the table creation or at the end of each query using keyword COLLATE.
 
+- ## Commit and Rollback
+
+  - it is possible to disable auto-commit in MySQL.
+    By default, MySQL operates in auto-commit mode, where each SQL statement is automatically committed after it is executed.
+
+  - START TRANSACTION :
+    This statement begins a new transaction and turns off auto-commit mode
+
+  - COMMIT :
+    This statement is used to explicitly commit the changes made within the current transaction. Once you issue the COMMIT statement, the changes become permanent in the database.
+
+  - ROLLBACK :
+    This statement is used to undo all changes made within the current transaction.
+    It effectively cancels any updates, inserts, or deletes performed since the transaction began.
+
+  - You can switch between auto-commit and manual transaction management as needed for your specific use case by using SET autocommit= 0/1.
+    Manual transaction management allows you to group multiple SQL statements into a single transaction, ensuring that they are either all committed or all rolled back in case of an error or a deliberate cancellation.
+
 - ## Transaction Lifecycle
 
   The transaction lifecycle in a Database Management System (DBMS) involves a series of steps that ensure data consistency and integrity while multiple users access and modify the database concurrently. The key phases of a transaction's lifecycle are:
@@ -119,6 +137,90 @@
   While the terminology and implementation details may vary between different database systems,
   the fundamental concept of using logs to record and recover changes remains consistent.
   Both Redo Logs and Transaction Logs play a critical role in ensuring the consistency and durability of the database in the face of failures and for supporting features like replication, backup, and point-in-time recovery.
+
+- ## Stored Procedure
+
+  - A stored procedure in MySQL is a precompiled collection of one or more SQL statements that are stored in the database and can be executed as a single unit.
+    Stored procedures offer several advantages, including:
+
+    1. Reusability: You can define a procedure once and call it multiple times from your application or other stored procedures.
+
+    2. Modularity: Stored procedures help break down complex tasks into smaller, more manageable steps, making it easier to maintain and debug your database logic.
+
+    3. Security: You can grant or deny specific permissions for executing stored procedures, enhancing database security.
+
+    4. Performance: Since stored procedures are precompiled, they can offer better performance for frequently executed operations.
+
+  - Create a Stored Procedure:
+    To create a stored procedure, use the CREATE PROCEDURE statement. The basic syntax is as follows:
+
+    ```
+      CREATE PROCEDURE GetEmployee(IN emp_id INT)
+      BEGIN
+          SELECT * FROM employees WHERE employee_id = emp_id;
+      END
+
+    ```
+
+  - Call a Stored Procedure:
+    You can call a stored procedure using the CALL statement or from your application code.
+    Here's how you can call the GetEmployee procedure:
+
+    ```
+    CALL GetEmployee(123);
+
+    ```
+
+  - Modify a Stored Procedure:
+    To modify an existing stored procedure, use the ALTER PROCEDURE statement:
+
+    ```
+      ALTER PROCEDURE procedure_name(parameter1 data_type, parameter2 data_type, ...)
+      BEGIN
+          -- Modified SQL statements
+      END;
+
+    ```
+
+  Stored procedures can take input parameters, return values, and perform various database operations.
+  They are a powerful tool for encapsulating business logic within your MySQL database, improving maintainability, and promoting data security.
+
+  - in backend code => Stored procedures or Direct Queries is the best way?
+
+    The decision of whether to execute a database query directly from client code or use a stored procedure depends on several factors, and there is no one-size-fits-all answer. It's a design choice that should be made based on the specific needs and constraints of your application. Here are some considerations for each approach:
+
+    Executing Queries Directly from Client Code:
+
+    1. Simplicity: Executing queries directly from client code can be simpler and more straightforward,
+       especially for simple CRUD (Create, Read, Update, Delete) operations.
+    2. Flexibility: It provides more flexibility as you can dynamically construct queries in your code based on user input or application logic.
+    3. Development Speed: For rapid development and prototyping, writing queries directly in your code may be faster.
+
+    However, there are some downsides to this approach:
+
+    1. Security: Directly constructing queries in client code can expose your application to SQL injection attacks if not handled properly.
+    2. Maintainability: Code that includes embedded SQL queries can be harder to maintain, especially as the application grows in complexity.
+    3. Code Reuse: You might duplicate similar queries in multiple places in your code, making it difficult to update them consistently.
+
+    Using Stored Procedures:
+    Stored procedures are precompiled database objects that contain one or more SQL statements. Here are some advantages of using stored procedures:
+
+    1. Security: Stored procedures can help mitigate SQL injection attacks, as input parameters can be strongly typed and sanitized within the stored procedure.
+    2. Performance: Stored procedures are precompiled, which can result in better performance and reduced execution plan optimization overhead.
+    3. Encapsulation: They provide a way to encapsulate and centralize complex business logic and data access, promoting a more modular and maintainable codebase.
+    4. Version Control: Stored procedures can be version-controlled separately from your application code.
+
+    However, using stored procedures also has some drawbacks:
+
+    1. Database Dependency: It ties your application more closely to a specific database system, making it less portable.
+    2. Learning Curve: Writing and maintaining stored procedures might require additional database-specific knowledge and skills.
+    3. Overhead: For simple CRUD operations, using stored procedures can introduce unnecessary overhead.
+
+    In many cases, a hybrid approach is used, where simple queries are executed directly from client code, while more complex business logic or data access operations are encapsulated in stored procedures.
+
+    The choice between the two should be based on your specific requirements, considering factors
+    like security, performance, maintainability, and the skills of your development team.
+    It's also important to regularly review your design decisions as your application evolves and scales.
 
 - ## Indexes
 
