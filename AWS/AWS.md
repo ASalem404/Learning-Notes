@@ -274,3 +274,97 @@ I will continue noting The remaining AWS services in this .md file, because I no
 
           - Second the response back from the Lambda function to the ALB also as JSON format.
             ![Lambda respons to ALB](<Lambda respons to ALB.png>)
+
+      - EventBridge:
+        AWS Lambda can be integrated with Amazon EventBridge to enable event-driven architectures. EventBridge simplifies the process of building event-driven applications by allowing you to connect different services using events. With this integration, you can easily route events from one service to another, including invoking Lambda functions in response to events
+
+        example:
+        Send an event to Amazon EventBridge every 2 minutes, you can use a CloudWatch Events Rule to schedule the events at the desired interval. CloudWatch Events is the service responsible for generating events on a schedule or in response to various events in your AWS environment.
+
+      - S3:
+        You can use S3 event notifications. S3 can generate events for various operations, including object creation. These events can then be configured to invoke a Lambda function.
+        whenever an object is created in the specified S3 bucket, an event will be triggered, and the associated Lambda function will be invoked. The Lambda function will receive details about the S3 event, allowing you to process the newly created object as needed.
+
+        Ensure that your Lambda function has the necessary IAM permissions to read from the S3 bucket and perform any required actions. You can configure these permissions in the Lambda function's IAM role.
+
+      - Lambda Event Source Mapping:
+        AWS Lambda Event Source Mapping is a feature that allows you to connect event sources, such as Amazon Simple Queue Service (SQS), Amazon Simple Notification Service (SNS), or streams from Amazon DynamoDB or Amazon Kinesis, to a Lambda function. It enables you to consume events from these sources and process them using your Lambda function.
+
+        Example:
+        connecting an Amazon Simple Queue Service (SQS) as an event source for AWS Lambda, the Lambda function "polls" for messages by processing batches of messages from the SQS queue
+        Lambda function is designed to process messages from the SQS queue. Each time new messages are added to the queue, the Lambda function will be triggered to process them in batches, up to the specified batch size. Adjust the batch size based on your specific use case and requirements
+
+      - Destinations:
+        AWS Lambda Destinations provide a way to asynchronously send the result of an AWS Lambda function's invocation to another AWS service or resource.
+        You can configure different destinations for the success and failure of a function invocation. This allows you to handle successful invocations differently from invocations that result in errors or exceptions.
+
+        Lambda Destinations help you design more resilient and scalable serverless applications by providing flexibility in handling function results and decoupling downstream processes.
+
+      - Environment Variables:
+        Environment variables in AWS Lambda provide a way to pass configuration settings to your function. These variables can be accessed by your Lambda function code, allowing you to customize behavior without changing the function code itself
+
+      - Lambda VPC:
+        AWS Lambda functions, by default, run in an environment that does not have direct access to Virtual Private Cloud (VPC) resources. However, you can configure a Lambda function to access private VPC resources by placing it inside a VPC. When a Lambda function is configured to run within a VPC, it can access resources within that VPC, including those in private subnets.
+        Lambda function able to access private VPC resources using Elastic Network Interfaces (ENIs).
+
+        - Internet Access:
+          If your Lambda function needs internet access, you may need to configure a NAT Gateway or NAT instance in the public subnet of your VPC.
+          This can cause issues when the Lambda function needs to interact with AWS services that are not in the VPC, such as DynamoDB, S3, and others but you can access them too throught the NAT or the VPC Endpoint.
+          ![Lambda VPC](<lambda VPC.png>)
+
+      - Lambda Performance:
+
+        1. Memory (RAM) Configuration:
+           The amount of memory you allocate to a Lambda function directly affects its performance and cost.
+           You can configure the memory size for a Lambda function in increments of 64 MB, starting from 128 MB up to a maximum of 3,008 MB (3 GB).
+           The CPU and network performance of the function is proportional to the amount of memory configured.
+           The cost of running your function is directly proportional to the amount of memory allocated.
+
+        2. Time_out
+           The timeout configuration determines how long your Lambda function is allowed to run before it is terminated. Ensure that the timeout value allows your function to complete its tasks within the given timeframe to avoid unnecessary costs. Billing is based on the actual execution time.
+           ![best practice](<best Lambda 1.png>)
+
+      - Lambda Layer:
+        AWS Lambda Layers allow you to centrally manage code and data that is shared across multiple Lambda functions. By using layers, you can package common libraries, dependencies, or custom runtime components separately from your function code. This promotes code reusability, reduces the size of your deployment packages, and makes it easier to maintain and update shared components.
+        It also enables you to create a custom runtime.
+
+      - Concurrency:
+        AWS Lambda concurrency refers to the number of invocations that your Lambda function can handle at any given time. Concurrency is a crucial aspect of Lambda's scalability and determines how many instances of your function can run in parallel.
+
+        1. Concurrency Limit:
+           Each AWS Lambda function has a concurrency limit, which is the maximum number of invocations that can be processed simultaneously.
+           The default concurrency limit is 1,000 per region but can be increased upon request.
+
+        The AWS account has an account-level limit for the total concurrent executions across all functions. This limit is separate from the function-level concurrency limit.
+
+        2. Reserved Concurrency:
+           You can set a reserved concurrency limit for a Lambda function. This sets a specific number of concurrent executions for that function, regardless of the account-level concurrency limit.
+           Reserved concurrency can help control costs and prevent a function from using all available concurrency in the account.
+
+        AWS Lambda scales primarily based on concurrency NOT MEMORY.
+
+      - Upload and Create Lambda Functions:
+
+        Upload Lambda function code and configurations through AWS CloudFormation using an S3 bucket.
+        All you need is a JSON CloudFormation template.
+
+      - Lambda Container Images:
+        AWS Lambda introduced support for running Lambda functions as container images. This is an alternative to the traditional deployment of Lambda functions using deployment packages (ZIP archives). With Lambda container images, you can package and deploy your Lambda function code as a container image.
+        You can use Amazon Elastic Container Service (ECS) and Amazon Elastic Container Registry (ECR) to build, store, and manage your Lambda container images.
+
+      - Lambda Versioning and Aliases:
+        AWS Lambda Versioning and Aliases are essential features that help you manage and deploy your Lambda functions effectively.
+        Lambda versioning allows you to publish different versions of your Lambda function code. Each version represents a snapshot of your function at a specific point in time.
+        Aliases are pointers to specific versions of your Lambda function. They allow you to abstract the function version from the invoking applications.
+
+        - Use Case:
+          You can weight Aliases to test a function with some real events to ensure its functionality before depend totally on it.
+
+      - Lambda with codeDeploy service:
+        AWS CodeDeploy is a service that automates application deployments to various compute services, including AWS Lambda. AWS CodeDeploy enables you to deploy your Lambda functions consistently and with minimal downtime.
+
+        CodeDeploy supports different deployment configurations, such as linear, canary, and all-at-once. This allows you to control the pace and safety of your Lambda function deployments.
+
+        You can specify Lambda function deployment hooks to perform actions before and after the deployment, such as validating traffic shifting or running tests.
+
+        AWS CodeDeploy for Lambda supports automatic rollbacks. If issues are detected during the deployment, CodeDeploy can automatically roll back to the previous version.
