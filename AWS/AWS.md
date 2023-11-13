@@ -2,6 +2,37 @@ I will continue noting The remaining AWS services in this .md file, because I no
 
 - AWS Services:
 
+  - CloudFormation:
+    AWS CloudFormation is a service provided by Amazon Web Services (AWS) that allows you to define and provision AWS infrastructure as code (IaC). Instead of manually creating and configuring resources in the AWS Management Console, you can use CloudFormation to script the setup of your infrastructure. This helps in automating the deployment and management of your AWS resources, making it easier to maintain and scale your applications.
+
+    - Templates:
+      CloudFormation uses JSON or YAML formatted templates to describe the set of resources and properties needed for your application. These templates are essentially the blueprints for your infrastructure.
+      In AWS CloudFormation templates, the order of resources generally does not matter. CloudFormation uses a dependency resolution system to determine the correct order in which resources should be created or updated based on their dependencies.
+
+    - Outputs:
+      CloudFormation templates can define outputs, which are values that are returned when the stack is created or updated. These outputs can be used in other stacks or referenced outside of CloudFormation.
+      the Export and Fn::ImportValue features enable you to share information between stacks. This is particularly useful when you have multiple CloudFormation stacks that need to communicate or share values.
+
+      In one CloudFormation stack, you define an Export in the Outputs section for a specific value (e.g., an Amazon S3 bucket name, an Amazon RDS endpoint).
+      The export name is used to identify this particular output value for sharing.
+
+      In another CloudFormation stack, you use Fn::ImportValue to reference the exported value from another stack.
+      You specify the export name to import the desired value.
+
+    - Conditions:
+      Optionally, you can define conditions based on input parameters that control whether certain resources are created or how they are configured.
+
+    - Intrinsic Functions:
+      Fn::GetAtt: Returns the value of an attribute from a resource in the template.
+      Fn::Sub: Performs string substitution.
+      Fn::ImportValue: Imports the value of an output exported by another stack.
+      Fn::Equals, Fn::Not, Fn::And, Fn::Or: Perform logical operations for conditions.
+
+    - Rollback:
+      A rollback occurs when there is an issue during the creation or update of a stack, and CloudFormation automatically reverts the changes made to the stack to its previous state. The goal of a rollback is to bring the stack back to a consistent and working state if an error is detected during the deployment process.
+
+  ***
+
   - SQS:
     Amazon Simple Queue Service (SQS) is a fully managed message queuing service provided by Amazon Web Services (AWS).
     It enables decoupling of the components of a cloud application by allowing them to communicate asynchronously.
