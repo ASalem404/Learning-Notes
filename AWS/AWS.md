@@ -399,3 +399,22 @@ I will continue noting The remaining AWS services in this .md file, because I no
         You can specify Lambda function deployment hooks to perform actions before and after the deployment, such as validating traffic shifting or running tests.
 
         AWS CodeDeploy for Lambda supports automatic rollbacks. If issues are detected during the deployment, CodeDeploy can automatically roll back to the previous version.
+
+  ***
+
+  - API Gateway:
+    Amazon API Gateway is a fully managed service provided by Amazon Web Services (AWS) that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale. API Gateway allows you to create APIs that can act as front doors for applications to access data, business logic, or functionality from your backend services, such as AWS Lambda functions, Amazon EC2 instances, or other web services.
+
+    API Gateway enables you to create RESTful APIs or WebSocket APIs. You define the resources and methods exposed by your API, including the HTTP methods (GET, POST, PUT, DELETE) that clients can use.
+    ![API Gateway](<API Gateway.png>)
+
+    - Custom Domain Names:
+      You can associate a custom domain name with your API, providing a branded and easily accessible endpoint for your API users.
+
+    - Staging:
+      In Amazon API Gateway, a stage is a named reference to a deployment, which is a snapshot of your API. Stages are used to manage different versions of your API, allowing you to deploy and test changes in a controlled manner. Each stage has its own set of configurations, and you can associate a custom domain name with a specific stage.
+
+      Each stage is associated with a unique URL endpoint. This endpoint is used by clients to make requests to your API in that specific stage. The URL typically looks like https://<api-id>.execute-api.<region>.amazonaws.com/<stage>.
+
+    - Canary:
+      The "canary release" refers to a deployment strategy that allows you to roll out changes to a small subset of users or traffic before making those changes widely available. This approach is often used to reduce the risk of introducing bugs or performance issues by exposing new features or updates to a controlled and limited audience first.
