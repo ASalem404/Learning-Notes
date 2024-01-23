@@ -37,3 +37,36 @@
     - The cost is based on the provisioned throughput capacity, regardless of whether you fully utilize it or not.
       You can independently provision read and write capacity for each GSI based on your application's needs.
       In addition to provisioned throughput costs, you are also charged for the storage of data in the GSI.
+
+    - ## So what is the differences between GSIs and the traditional Indexes?
+      - GSIs have their own provisioned write and read capacity separate from the base table.
+        This means you can specify different throughput settings for your GSI, allowing you to optimize performance based on your specific query patterns.
+      - In many SQL databases, indexes are closely tied to the table's structure, and their write and read performance impact is generally a part of the overall table's performance.
+      - When writing to a DynamoDB table, the write to the GSI might not be immediately reflected, and there might be some delay in consistency.
+        DynamoDB provides eventual consistency for GSIs.
+      - In SQL databases, indexes are typically maintained for consistency as part of the transactional process.
+
+  - LSI:
+
+    - LSI (Local Secondary Index) is a type of secondary index that allows you to query and retrieve data from a table using an alternative sort key in addition to the primary key
+    - You must define LSIs when creating the table; they cannot be added or removed later.
+    - An LSI is created with one or more attributes that are part of the table's primary key.
+    - LSIs share provisioned throughput (read and write capacity units) with the base table.
+      Any read or write capacity consumed by queries on the LSI is deducted from the provisioned capacity of the table.
+
+      ```sql
+      Table: Employee
+
+      - Primary Key: (EmployeeID - Partition Key, DateOfBirth - Sort Key)
+      - LSI: (EmployeeID - Partition Key, Salary - Sort Key)
+
+      ```
+
+  - Auto Scaling:
+    - Auto Scaling is a feature provided by Amazon DynamoDB that helps automatically adjust the provisioned read and write capacity for your tables in response to changes in application traffic
+    - It automatically increases or decreases provisioned capacity in response to changes in application demand.
+    - You can set up target tracking scaling policies for your DynamoDB tables.
+      These policies allow you to specify a target utilization percentage for read and write capacity, and Auto Scaling adjusts the provisioned capacity to maintain that target.
+    - You can configure warm-up and cooldown periods to control how quickly Auto Scaling adjusts capacity in response to changes in traffic.
+    - To set up Auto Scaling for your DynamoDB tables, you typically define scaling policies and associate them with CloudWatch alarms.
+      These alarms are triggered based on metrics such as consumed capacity and are used to dynamically adjust the provisioned capacity.
