@@ -4,7 +4,6 @@
 
     - Scalability: DynamoDB is designed for seamless horizontal scaling.
       As your application grows, you can easily increase the read and write capacity to accommodate higher traffic.
-
     - Performance: DynamoDB offers low-latency access to data with consistent and predictable performance,
       making it suitable for real-time applications.
 
