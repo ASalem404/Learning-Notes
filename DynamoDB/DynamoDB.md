@@ -63,6 +63,7 @@
       ```
 
   - Auto Scaling:
+
     - Auto Scaling is a feature provided by Amazon DynamoDB that helps automatically adjust the provisioned read and write capacity for your tables in response to changes in application traffic
     - It automatically increases or decreases provisioned capacity in response to changes in application demand.
     - You can set up target tracking scaling policies for your DynamoDB tables.
@@ -70,3 +71,18 @@
     - You can configure warm-up and cooldown periods to control how quickly Auto Scaling adjusts capacity in response to changes in traffic.
     - To set up Auto Scaling for your DynamoDB tables, you typically define scaling policies and associate them with CloudWatch alarms.
       These alarms are triggered based on metrics such as consumed capacity and are used to dynamically adjust the provisioned capacity.
+
+  - Streaming:
+
+    - DynamoDB Streams provide a time-ordered sequence of item-level modifications in a DynamoDB table.
+    - Changes include additions, updates, or deletions of items in the table.
+    - DynamoDB Streams can be integrated with other AWS services, such as AWS Lambda, Amazon Kinesis, and Amazon Simple Notification Service (SNS).
+    - You can use these integrations to perform various actions in response to changes in the DynamoDB table.
+      ex1: When changes occur in the associated DynamoDB table, the Lambda function is automatically triggered.
+      ex2: Common use cases for DynamoDB Streams include auditing changes to items, replicating data across multiple tables or regions, and triggering workflows in response to changes.
+
+    - Old image - New image:
+      - Old Image: The "old image" represents the state of an item in the DynamoDB table before a change occurs.
+        For example, if an item is updated, the old image will contain the attribute values as they were before the update.
+    - New Image: The "new image" represents the state of an item in the DynamoDB table after a change occurs.
+      Following the example above, if an item is updated, the new image will contain the attribute values as they are after the update.
